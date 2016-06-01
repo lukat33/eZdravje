@@ -4,12 +4,16 @@
   <meta charset="utf-8">
   <title>eZdravje :: 4. DN :: OIS 2015/2016</title>
   <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
+  <link href="knjiznice/css/stili.css" rel="stylesheet">
   <style>
     body {padding-top: 70px;}
   </style>
+  
   <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
   <script src="knjiznice/js/bootstrap.min.js"></script>
   <script src="knjiznice/js/koda.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnYWqnWw2rSK-uqJdTybBhTAVxtMPVlPE&libraries=places&callback=initMap"></script>
+	<script src="knjiznice/js/geo.js"></script>
 </head>
 <body>
 
@@ -40,9 +44,39 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <p class="lead"><strong>TO-DO</strong>: Na tem mestu implementirajte vašo aplikacijo.</p>
+        <p class="lead"><strong>APP</strong>: Aplikacija</p>
       </div>
     </div>
+    
+    <div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-lg-8 col-md-8 col-sm-8"><b>Google maps</b> pripomoček</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-4 col-md-4 col-sm-4"> 
+							<input type="radio" name="health" value="hospitals" onclick="geoHosp(1),clearMarkersHealth()"> Zdravstvo
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4"> 
+							<input type="radio" name="health" value="health" onclick="geoHealth(1),clearMarkersHosp()"> Lekarne
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4"> 
+							<input type="radio" name="health" value="hide" onclick="clearMarkersHealth(),clearMarkersHosp()"> Skrij
+							</div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div id="testis">
+							<input id="pac-input" class="controls" type="text" placeholder="Vnesite lokacijo">
+							<div id="map"></div> 
+						</div>
+				  	</div>
+				</div>	
+			</div>
+		</div>
+    
   </div>
   <!-- KONEC: Vsebina aplikacije -->
 
