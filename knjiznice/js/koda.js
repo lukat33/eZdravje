@@ -41,8 +41,8 @@ function generirajPodatke(stPacienta) {
         success: function (data) {
             var ehrId = data.ehrId;
             var partyData = {
-                firstNames: "Luka",
-                lastNames: "Tavčer",
+                firstNames: "Zdravko",
+                lastNames: "Dren",
                 dateOfBirth: "1996-10-30T14:58",
                 partyAdditionalInfo: [{key: "ehrId", value: ehrId}]
             };
@@ -53,7 +53,7 @@ function generirajPodatke(stPacienta) {
                 data: JSON.stringify(partyData),
                 success: function (party) {
                     if (party.action == 'CREATE') {
-                        $("#kreirajSporocilo").html("<span class='label label-primary'>EHR 1 '" +
+                        $("#kreirajSporocilo").html("<span class='label label-success'>Dober '" +
                       ehrId + "'</span>");
                     }
                 },
@@ -67,13 +67,13 @@ function generirajPodatke(stPacienta) {
         	var podatki = {
         	    "ctx/language": "en",
         	    "ctx/territory": "SI",
-        	    "ctx/time": "1938-10-30T14:58",
-        	    "vital_signs/height_length/any_event/body_height_length": "185",
-        	    "vital_signs/body_weight/any_event/body_weight": "55.0",
-        	   	"vital_signs/body_temperature/any_event/temperature|magnitude": "36.50",
+        	    "ctx/time": "2016-05-30T14:58",
+        	    "vital_signs/height_length/any_event/body_height_length": "179",
+        	    "vital_signs/body_weight/any_event/body_weight": "75.3",
+        	   	"vital_signs/body_temperature/any_event/temperature|magnitude": "36.70",
         	    "vital_signs/body_temperature/any_event/temperature|unit": "°C",
-        	    "vital_signs/blood_pressure/any_event/systolic": "118",
-        	    "vital_signs/blood_pressure/any_event/diastolic": "92",
+        	    "vital_signs/blood_pressure/any_event/systolic": "109",
+        	    "vital_signs/blood_pressure/any_event/diastolic": "76",
         	    "vital_signs/indirect_oximetry:0/spo2|numerator": "98"
             };
         	var parametriZahteve = {
@@ -100,9 +100,9 @@ function generirajPodatke(stPacienta) {
         success: function (data) {
             var ehrId = data.ehrId;
             var partyData = {
-                firstNames: "Luka",
-                lastNames: "Tavčer",
-                dateOfBirth: "1996-10-30T14:58",
+                firstNames: "Peter",
+                lastNames: "Peterko",
+                dateOfBirth: "1981-08-30T11:18",
                 partyAdditionalInfo: [{key: "ehrId", value: ehrId}]
             };
             $.ajax({
@@ -112,7 +112,7 @@ function generirajPodatke(stPacienta) {
                 data: JSON.stringify(partyData),
                 success: function (party) {
                     if (party.action == 'CREATE') {
-                        $("#kreirajSporocilo2").html("<span class='label label-primary'>EHR '" +
+                        $("#kreirajSporocilo2").html("<span class='label label-primary'>Normalen '" +
                       ehrId + "'</span>");
                     }
                 },
@@ -126,20 +126,20 @@ function generirajPodatke(stPacienta) {
         	var podatki = {
         	    "ctx/language": "en",
         	    "ctx/territory": "SI",
-        	    "ctx/time": "1938-10-30T14:58",
+        	    "ctx/time": "2016-04-14T14:12",
         	    "vital_signs/height_length/any_event/body_height_length": "185",
-        	    "vital_signs/body_weight/any_event/body_weight": "55.0",
+        	    "vital_signs/body_weight/any_event/body_weight": "85.0",
         	   	"vital_signs/body_temperature/any_event/temperature|magnitude": "36.50",
         	    "vital_signs/body_temperature/any_event/temperature|unit": "°C",
-        	    "vital_signs/blood_pressure/any_event/systolic": "118",
-        	    "vital_signs/blood_pressure/any_event/diastolic": "92",
-        	    "vital_signs/indirect_oximetry:0/spo2|numerator": "98"
+        	    "vital_signs/blood_pressure/any_event/systolic": "129",
+        	    "vital_signs/blood_pressure/any_event/diastolic": "89",
+        	    "vital_signs/indirect_oximetry:0/spo2|numerator": "95"
             };
         	var parametriZahteve = {
         	    ehrId: ehrId,
         	    templateId: 'Vital Signs',
         	    format: 'FLAT',
-        	    committer: 'Medicinska sestra Anja'
+        	    committer: 'Medicinska sestra Franja'
         	};
             
             $.ajax({
@@ -159,9 +159,9 @@ function generirajPodatke(stPacienta) {
         success: function (data) {
             var ehrId = data.ehrId;
             var partyData = {
-                firstNames: "Luka",
-                lastNames: "Tavčer",
-                dateOfBirth: "1996-10-30T14:58",
+                firstNames: "Boljan",
+                lastNames: "Vročinek",
+                dateOfBirth: "1974-12-12T19:52",
                 partyAdditionalInfo: [{key: "ehrId", value: ehrId}]
             };
             $.ajax({
@@ -171,7 +171,7 @@ function generirajPodatke(stPacienta) {
                 data: JSON.stringify(partyData),
                 success: function (party) {
                     if (party.action == 'CREATE') {
-                        $("#kreirajSporocilo3").html("<span class='label label-primary'>EHR 3 '" +
+                        $("#kreirajSporocilo3").html("<span class='label label-danger'>Slab '" +
                       ehrId + "'</span>");
                     }
                 },
@@ -185,20 +185,20 @@ function generirajPodatke(stPacienta) {
         	var podatki = {
         	    "ctx/language": "en",
         	    "ctx/territory": "SI",
-        	    "ctx/time": "1938-10-30T14:58",
-        	    "vital_signs/height_length/any_event/body_height_length": "185",
-        	    "vital_signs/body_weight/any_event/body_weight": "55.0",
-        	   	"vital_signs/body_temperature/any_event/temperature|magnitude": "36.50",
+        	    "ctx/time": "2016-04-02T09:17",
+        	    "vital_signs/height_length/any_event/body_height_length": "172",
+        	    "vital_signs/body_weight/any_event/body_weight": "91.0",
+        	   	"vital_signs/body_temperature/any_event/temperature|magnitude": "38.40",
         	    "vital_signs/body_temperature/any_event/temperature|unit": "°C",
-        	    "vital_signs/blood_pressure/any_event/systolic": "118",
-        	    "vital_signs/blood_pressure/any_event/diastolic": "92",
-        	    "vital_signs/indirect_oximetry:0/spo2|numerator": "98"
+        	    "vital_signs/blood_pressure/any_event/systolic": "151",
+        	    "vital_signs/blood_pressure/any_event/diastolic": "103",
+        	    "vital_signs/indirect_oximetry:0/spo2|numerator": "92"
             };
         	var parametriZahteve = {
         	    ehrId: ehrId,
         	    templateId: 'Vital Signs',
         	    format: 'FLAT',
-        	    committer: 'Medicinska sestra Anja'
+        	    committer: 'Medicinska sestra Bolanka'
         	};
             
             $.ajax({
