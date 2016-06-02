@@ -34,12 +34,6 @@
           <li><a href="opis.html">Opis ideje</a></li>
           <li><a href="nacrt.html">Načrt informacijske rešitve</a></li>
           <li><a href="javascript:kreirajEHRzaBolnika()">Generiranje podatkov</a></li>
-          <div class="row">
-            <span id="kreirajSporocilo"></span>
-            <span id="kreirajSporocilo2"></span>
-            <span id="kreirajSporocilo3"></span>
-          </div>
-        </ul>
       </div>
     </div>
   </nav>
@@ -48,27 +42,35 @@
   <!-- ZAČETEK: Vsebina aplikacije -->
   <div class="container">
     
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <p class="lead"><strong>APP</strong>: Aplikacija</p>
-      </div>
-    </div>
-    
     <!-- ZACETEK: prva vrsta -->
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-6">
-				<div class="panel panel-default">
+				<div class="panel panel-default" id="vse">
 					<div class="panel-heading">
 						<div class="row">
-							<div class="col-lg-8 col-md-8 col-sm-8"><b>Preberi EHR zapis</b> obstoječega bolnika</div>
+							<div class="col-lg-8 col-md-8 col-sm-8"><p><b>Prijava</b> uporabnika</p></div>
 							<div class="col-lg-4 col-md-4 col-sm-4"><select class="form-control input-sm" id="preberiObstojeciEHR"><option value=""></option></select></div>
 						</div>
 					</div>
 					<div class="panel-body">
-						<span class="label label-default">EHR ID</span><input id="preberiEHRid" type="text" class="form-control input-mini" placeholder="7b661e12-3a98-21ad-c29e-2dc9f5a3d885">
-						<button type="button" class="btn btn-primary btn-xs" onclick="preberiEHRodBolnika()">Preberi osnovne podatke o bolniku</button><span id="preberiSporocilo"></span>
+						<span class="label label-default">EHR ID</span><input id="prijavljen" type="text" class="form-control input-mini" placeholder="vnesi EHR id">
+						<button type="button" class="btn btn-primary btn-xs" onclick="prijava()">Prijava</button><span id="prijavaSporocilo"></span>
 				  	</div>
 				</div>
+				
+				<div class="panel panel-success" id="2" style="display:none;">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-lg-8 col-md-8 col-sm-8" ><p id="user"></p></div>
+							<div class="col-lg-4 col-md-4 col-sm-4"><select class="form-control input-sm" id="preberiObstojeciEHR2" disabled><option value=""></option></select></div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<span class="label label-default">EHR ID</span><input id="prijavljen2" type="text" class="form-control input-mini label-success" placeholder="vnesi EHR id" disabled>
+						<button type="button" class="btn btn-primary btn-xs" onclick="prijava()">Odjava</button><span id="prijavaSporocilo"></span>
+				  	</div>
+				</div>
+				
 			</div>
 			
 			<div class="col-lg-6 col-md-6 col-sm-6">
@@ -99,6 +101,9 @@
 			</div>
 		</div>
 		<!-- KONEC: prva vrsta -->
+		
+		<div class="row">
+		 
     
   </div>
   <!-- KONEC: Vsebina aplikacije -->
