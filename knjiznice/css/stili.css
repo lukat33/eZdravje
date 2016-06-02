@@ -35,8 +35,17 @@
 .pac-container {
     font-family: Roboto;
 }
+body {
+    padding-top: 70px;
+}
 
-.bg-pink
-{
-  background-color: #ececec;
+.btn {
+    margin-top: 10px;
+}
+.obvestilo {
+    margin-left:10px;
+}
+.majhna-ikona {
+    font-size:60%; 
+    margin-left:10px
 }

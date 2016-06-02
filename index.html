@@ -41,11 +41,22 @@
 
   <!-- ZAČETEK: Vsebina aplikacije -->
   <div class="container">
+  	<div class="row">
+      <div class="panel panel-primary">
+					<div class="panel-heading text-center" >
+						<div class="row">	
+							<h3><b>EHR aplikacija</b></h3>
+						</div>
+					</div>
+					</div>
+    </div>
+  	
+    
     
     <!-- ZACETEK: prva vrsta -->
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-6">
-				<div class="panel panel-default" id="vse">
+				<div class="panel panel-default" id="prijavaOff">
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-lg-8 col-md-8 col-sm-8"><p><b>Prijava</b> uporabnika</p></div>
@@ -58,7 +69,7 @@
 				  	</div>
 				</div>
 				
-				<div class="panel panel-success" id="2" style="display:none;">
+				<div class="panel panel-success" id="prijavaOn" style="display:none;">
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-lg-8 col-md-8 col-sm-8" ><p id="user"></p></div>
@@ -71,6 +82,23 @@
 				  	</div>
 				</div>
 				
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-lg-8 col-md-8 col-sm-8">
+								<p><b>Vnos</b> meritve <b>vitalnih znakov</p>
+							</div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<span class="label label-default">Datum in ura</span><input id="dodajVitalnoDatumInUra" type="text" class="form-control input-mini" placeholder="2014-11-21T11:40Z" disabled>
+						<span class="label label-default">Telesna temperatura</span><div class="input-group"><input id="dodajVitalnoTelesnaTemperatura" type="text" class="form-control input-mini" placeholder="36.50"><span class="input-group-addon">°C</span></div>
+						<span class="label label-default">Sistolični krvni tlak</span><div class="input-group"><input id="dodajVitalnoKrvniTlakSistolicni" type="text" class="form-control input-mini" placeholder="118"><span class="input-group-addon">mm Hg</span></div>
+						<span class="label label-default">Diastolični krvni tlak</span><div class="input-group"><input id="dodajVitalnoKrvniTlakDiastolicni" type="text" class="form-control input-mini" placeholder="92"><span class="input-group-addon">mm Hg</span></div>
+						<button type="button" id="gumbMeritve" class="btn btn-primary btn-xs" onclick="dodajMeritveVitalnihZnakov()" disabled>Dodaj meritve</button><span id="dodajMeritveVitalnihZnakovSporocilo"></span>
+				  	</div>
+				</div>
+
 			</div>
 			
 			<div class="col-lg-6 col-md-6 col-sm-6">

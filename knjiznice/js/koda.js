@@ -23,6 +23,7 @@ function getSessionId() {
     return response.responseJSON.sessionId;
 }
 
+// TODO: Tukaj implementirate funkcionalnost, ki jo podpira vaša aplikacija
 
 /**
  * Generator podatkov za novega pacienta, ki bo uporabljal aplikacijo. Pri
@@ -34,20 +35,14 @@ function getSessionId() {
  */
 function kreirajEHRzaBolnika() {
     if (ustaviGeneriranje == 0) {
-	sessionId = getSessionId();
-	
-	$.ajaxSetup({
-	    headers: {"Ehr-Session": sessionId}
-	});
-	
-	
-    
-	for(var i=0; i<3; i++) {
-	    generirajPodatke(i);
+    	for(var i=0; i<3; i++) {
+    	    generirajPodatke(i);
+        }
     }
 }
 
 function generirajPodatke(stPacienta) {
+    sessionId = getSessionId();
     ehrId = "";
     var ime;
 	var priimek;
@@ -100,6 +95,11 @@ function generirajPodatke(stPacienta) {
         kisik = "92";
         break;
   }
+  
+  $.ajaxSetup({
+	    headers: {"Ehr-Session": sessionId}
+    });
+	
   $.ajax({
         url: baseUrl + "/ehr",
         type: 'POST',
@@ -158,7 +158,6 @@ function generirajPodatke(stPacienta) {
             });
         }
     }); ustaviGeneriranje = 1;
-    }
 }
 
 function preberiEHRodBolnika() {
@@ -271,14 +270,17 @@ function prijava() {
 				ime = party.firstNames;
 				priimek = party.lastNames;
           
-            if($('#vse').css('display') !='none'){
-                $('#2').show().siblings('#vse').hide();
+            if($('#prijavaOff').css('display') !='none'){
+                $('#prijavaOn').show().siblings('#prijavaOff').hide();
                 $( "#user" ).html("<b>Pozdravljen </b>" +ime + " " + priimek+ "!");
                 $('#prijavljen2').attr('placeholder',ehrId);
+                $("#dodajVitalnoDatumInUra").attr('disabled', false);
+                $("#gumbMeritve").attr('disabled', false);
             } 
-                else if($('#2').css('display')!='none'){
-                $('#vse').show().siblings('#2').hide();
+                else if($('#prijavaOn').css('display')!='none'){
+                $('#prijavaOff').show().siblings('#prijavaOn').hide();
                 prijavljen = "nihce";
+                $("#prijavljen").val("");
                 }
 			},
 			error: function(err) {
@@ -288,14 +290,66 @@ function prijava() {
 			}
 		});
 	}
-	
-	
 }
 
-    
+function dodajMeritveVitalnihZnakov() {
+	sessionId = getSessionId();
 
-// TODO: Tukaj implementirate funkcionalnost, ki jo podpira vaša aplikacija
-//FUNKCIJE
+	var ehrId = $("#dodajVitalnoEHR").val();
+	var datumInUra = $("#dodajVitalnoDatumInUra").val();
+	var telesnaVisina = $("#dodajVitalnoTelesnaVisina").val();
+	var telesnaTeza = $("#dodajVitalnoTelesnaTeza").val();
+	var telesnaTemperatura = $("#dodajVitalnoTelesnaTemperatura").val();
+	var sistolicniKrvniTlak = $("#dodajVitalnoKrvniTlakSistolicni").val();
+	var diastolicniKrvniTlak = $("#dodajVitalnoKrvniTlakDiastolicni").val();
+	var nasicenostKrviSKisikom = $("#dodajVitalnoNasicenostKrviSKisikom").val();
+	var merilec = $("#dodajVitalnoMerilec").val();
+
+	if (!ehrId || ehrId.trim().length == 0) {
+		$("#dodajMeritveVitalnihZnakovSporocilo").html("<span class='obvestilo " +
+      "label label-warning fade-in'>Prosim vnesite zahtevane podatke!</span>");
+	} else {
+		$.ajaxSetup({
+		    headers: {"Ehr-Session": sessionId}
+		});
+		var podatki = {
+			// Struktura predloge je na voljo na naslednjem spletnem naslovu:
+      // https://rest.ehrscape.com/rest/v1/template/Vital%20Signs/example
+		    "ctx/language": "en",
+		    "ctx/territory": "SI",
+		    "ctx/time": datumInUra,
+		    "vital_signs/height_length/any_event/body_height_length": telesnaVisina,
+		    "vital_signs/body_weight/any_event/body_weight": telesnaTeza,
+		   	"vital_signs/body_temperature/any_event/temperature|magnitude": telesnaTemperatura,
+		    "vital_signs/body_temperature/any_event/temperature|unit": "°C",
+		    "vital_signs/blood_pressure/any_event/systolic": sistolicniKrvniTlak,
+		    "vital_signs/blood_pressure/any_event/diastolic": diastolicniKrvniTlak,
+		    "vital_signs/indirect_oximetry:0/spo2|numerator": nasicenostKrviSKisikom
+		};
+		var parametriZahteve = {
+		    ehrId: ehrId,
+		    templateId: 'Vital Signs',
+		    format: 'FLAT',
+		    committer: merilec
+		};
+		$.ajax({
+		    url: baseUrl + "/composition?" + $.param(parametriZahteve),
+		    type: 'POST',
+		    contentType: 'application/json',
+		    data: JSON.stringify(podatki),
+		    success: function (res) {
+		        $("#dodajMeritveVitalnihZnakovSporocilo").html(
+              "<span class='obvestilo label label-success fade-in'>" +
+              res.meta.href + ".</span>");
+		    },
+		    error: function(err) {
+		    	$("#dodajMeritveVitalnihZnakovSporocilo").html(
+            "<span class='obvestilo label label-danger fade-in'>Napaka '" +
+            JSON.parse(err.responseText).userMessage + "'!");
+		    }
+		});
+	}
+}
 
 
 
