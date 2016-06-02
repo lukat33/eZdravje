@@ -42,19 +42,19 @@
   <!-- ZAČETEK: Vsebina aplikacije -->
   <div class="container">
   	<div class="row">
-      <div class="panel panel-primary">
-					<div class="panel-heading text-center" >
-						<div class="row">	
-							<h3><b>EHR aplikacija</b></h3>
-						</div>
+  		<div class="panel panel-primary">
+				<div class="panel-heading text-center" >
+					<div class="row">	
+						<h3><b>EHR aplikacija</b></h3>
 					</div>
-					</div>
+				</div>
+			</div>
     </div>
-  	
     
     
     <!-- ZACETEK: prva vrsta -->
     <div class="row">
+    	
       <div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="panel panel-default" id="prijavaOff">
 					<div class="panel-heading">
@@ -66,8 +66,8 @@
 					<div class="panel-body">
 						<span class="label label-default">EHR ID</span><input id="prijavljen" type="text" class="form-control input-mini" placeholder="vnesi EHR id">
 						<button type="button" class="btn btn-primary btn-xs" onclick="prijava()">Prijava</button><span id="prijavaSporocilo"></span>
-				  	</div>
-				</div>
+				  </div>
+			  </div>
 				
 				<div class="panel panel-success" id="prijavaOn" style="display:none;">
 					<div class="panel-heading">
@@ -79,14 +79,14 @@
 					<div class="panel-body">
 						<span class="label label-default">EHR ID</span><input id="prijavljen2" type="text" class="form-control input-mini label-success" placeholder="vnesi EHR id" disabled>
 						<button type="button" class="btn btn-primary btn-xs" onclick="prijava()">Odjava</button><span id="prijavaSporocilo"></span>
-				  	</div>
+				  </div>
 				</div>
 				
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-lg-8 col-md-8 col-sm-8">
-								<p><b>Vnos</b> meritve <b>vitalnih znakov</p>
+								<p><b>Vnos</b> meritve vitalnih znakov</p>
 							</div>
 						</div>
 					</div>
@@ -96,11 +96,11 @@
 						<span class="label label-default">Sistolični krvni tlak</span><div class="input-group"><input id="dodajVitalnoKrvniTlakSistolicni" type="text" class="form-control input-mini" placeholder="118"><span class="input-group-addon">mm Hg</span></div>
 						<span class="label label-default">Diastolični krvni tlak</span><div class="input-group"><input id="dodajVitalnoKrvniTlakDiastolicni" type="text" class="form-control input-mini" placeholder="92"><span class="input-group-addon">mm Hg</span></div>
 						<button type="button" id="gumbMeritve" class="btn btn-primary btn-xs" onclick="dodajMeritveVitalnihZnakov()" disabled>Dodaj meritve</button><span id="dodajMeritveVitalnihZnakovSporocilo"></span>
-				  	</div>
+				  </div>
 				</div>
 
 			</div>
-			
+			<!-- ZACETEK: google -->
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -127,13 +127,10 @@
 			  	</div>
 				</div>	
 			</div>
+			<!-- KONEC: google -->
 		</div>
 		<!-- KONEC: prva vrsta -->
-		
-		<div class="row">
-		 
-    
-  </div>
+	</div>
   <!-- KONEC: Vsebina aplikacije -->
 
 </body>
