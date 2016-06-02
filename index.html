@@ -39,7 +39,6 @@
             <span id="kreirajSporocilo2"></span>
             <span id="kreirajSporocilo3"></span>
           </div>
-          
         </ul>
       </div>
     </div>
@@ -55,24 +54,23 @@
       </div>
     </div>
     
-    <div class="col-lg-6 col-md-6 col-sm-6">
+    <!-- ZACETEK: prva vrsta -->
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="row">
-							<div class="col-lg-8 col-md-8 col-sm-8"><b>Kreiraj EHR zapis</b> za novega bolnika</div>
-							<div class="col-lg-4 col-md-4 col-sm-4"><select class="form-control input-sm" id="preberiPredlogoBolnika"><option value=""></option><option value="Pujsa,Pepa,1938-10-30T14:58">Pujsa Pepa</option></select></div>
+							<div class="col-lg-8 col-md-8 col-sm-8"><b>Preberi EHR zapis</b> obstoječega bolnika</div>
+							<div class="col-lg-4 col-md-4 col-sm-4"><select class="form-control input-sm" id="preberiObstojeciEHR"><option value=""></option></select></div>
 						</div>
 					</div>
 					<div class="panel-body">
-						<span class="label label-default">Ime</span><input id="kreirajIme" type="text" class="form-control input-mini" placeholder="Osama">
-						<span class="label label-default">Priimek</span><input id="kreirajPriimek" type="text" class="form-control" placeholder="Bin Laden">
-						<span class="label label-default">Datum rojstva</span><input id="kreirajDatumRojstva" type="text" class="form-control" placeholder="1957-03-10T09:08">
-						<button type="button" class="btn btn-primary btn-xs" onclick="kreirajEHRzaBolnika()">Dodaj osnovne podatke o bolniku</button><span id="kreirajSporocilo"></span>
+						<span class="label label-default">EHR ID</span><input id="preberiEHRid" type="text" class="form-control input-mini" placeholder="7b661e12-3a98-21ad-c29e-2dc9f5a3d885">
+						<button type="button" class="btn btn-primary btn-xs" onclick="preberiEHRodBolnika()">Preberi osnovne podatke o bolniku</button><span id="preberiSporocilo"></span>
 				  	</div>
 				</div>
 			</div>
-    
-    <div class="row">
+			
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -96,10 +94,11 @@
 							<input id="pac-input" class="controls" type="text" placeholder="Vnesite lokacijo">
 							<div id="map"></div> 
 						</div>
-				  	</div>
+			  	</div>
 				</div>	
 			</div>
 		</div>
+		<!-- KONEC: prva vrsta -->
     
   </div>
   <!-- KONEC: Vsebina aplikacije -->

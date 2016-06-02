@@ -30,6 +30,18 @@ function getSessionId() {
  * @param stPacienta zaporedna številka pacienta (1, 2 ali 3)
  * @return ehrId generiranega pacienta
  */
+function kreirajEHRzaBolnika() {
+	sessionId = getSessionId();
+	
+	$.ajaxSetup({
+	    headers: {"Ehr-Session": sessionId}
+	});
+	
+	for(var i=0; i<3; i++) {
+	    generirajPodatke(i);
+    }
+}
+
 function generirajPodatke(stPacienta) {
     ehrId = "";
 
@@ -53,8 +65,9 @@ function generirajPodatke(stPacienta) {
                 data: JSON.stringify(partyData),
                 success: function (party) {
                     if (party.action == 'CREATE') {
-                        $("#kreirajSporocilo").html("<span class='label label-success'>Dober '" +
+                        $("#kreirajSporocilo").html("<span class='label label-default'>Dober '" +
                       ehrId + "'</span>");
+                      	$( "#preberiObstojeciEHR" ).append( '<option value="' +ehrId+'">Zdravko Dren</option>' );
                     }
                 },
                 error: function(err) {
@@ -112,12 +125,13 @@ function generirajPodatke(stPacienta) {
                 data: JSON.stringify(partyData),
                 success: function (party) {
                     if (party.action == 'CREATE') {
-                        $("#kreirajSporocilo2").html("<span class='label label-primary'>Normalen '" +
+                        $("#kreirajSporocilo2").html("<span class='label label-default'>Normalen '" +
                       ehrId + "'</span>");
+                      $( "#preberiObstojeciEHR" ).append( '<option value="' +ehrId+'">Peter Peterko</option>' );
                     }
                 },
                 error: function(err) {
-                	$("#kreirajSporocilo").html("<span class='obvestilo label " +
+                	$("#kreirajSporocilo2").html("<span class='obvestilo label " +
                 "label-danger fade-in'>Napaka '" +
                 JSON.parse(err.responseText).userMessage + "'!");
                 }
@@ -171,12 +185,13 @@ function generirajPodatke(stPacienta) {
                 data: JSON.stringify(partyData),
                 success: function (party) {
                     if (party.action == 'CREATE') {
-                        $("#kreirajSporocilo3").html("<span class='label label-danger'>Slab '" +
+                        $("#kreirajSporocilo3").html("<span class='label label-default'>Slab '" +
                       ehrId + "'</span>");
+                      $( "#preberiObstojeciEHR" ).append( '<option value="' +ehrId+'">Boljan Vročinek</option>' );
                     }
                 },
                 error: function(err) {
-                	$("#kreirajSporocilo").html("<span class='obvestilo label " +
+                	$("#kreirajSporocilo3").html("<span class='obvestilo label " +
                 "label-danger fade-in'>Napaka '" +
                 JSON.parse(err.responseText).userMessage + "'!");
                 }
@@ -214,28 +229,98 @@ function generirajPodatke(stPacienta) {
         
     default:
         return 0;
+  }
 }
 
-  // TODO: Potrebno implementirati
+function preberiEHRodBolnika() {
+	sessionId = getSessionId();
 
-  return ehrId;
+	var ehrId = $("#preberiEHRid").val();
+
+	if (!ehrId || ehrId.trim().length == 0) {
+		$("#preberiSporocilo").html("<span class='obvestilo label label-warning " +
+      "fade-in'>Prosim vnesite zahtevan podatek!");
+	} else {
+		$.ajax({
+			url: baseUrl + "/demographics/ehr/" + ehrId + "/party",
+			type: 'GET',
+			headers: {"Ehr-Session": sessionId},
+	    	success: function (data) {
+				var party = data.party;
+				$("#preberiSporocilo").html("<span class='obvestilo label " +
+          "label-success fade-in'>Bolnik '" + party.firstNames + " " +
+          party.lastNames + "', ki se je rodil '" + party.dateOfBirth +
+          "'.</span>");
+			},
+			error: function(err) {
+				$("#preberiSporocilo").html("<span class='obvestilo label " +
+          "label-danger fade-in'>Napaka '" +
+          JSON.parse(err.responseText).userMessage + "'!");
+			}
+		});
+	}
 }
 
+$(document).ready(function() {
+
+  /**
+   * Napolni testne vrednosti (ime, priimek in datum rojstva) pri kreiranju
+   * EHR zapisa za novega bolnika, ko uporabnik izbere vrednost iz
+   * padajočega menuja (npr. Pujsa Pepa).
+   */
+  $('#preberiPredlogoBolnika').change(function() {
+    $("#kreirajSporocilo").html("");
+    var podatki = $(this).val().split(",");
+    $("#kreirajIme").val(podatki[0]);
+    $("#kreirajPriimek").val(podatki[1]);
+    $("#kreirajDatumRojstva").val(podatki[2]);
+  });
+
+  /**
+   * Napolni testni EHR ID pri prebiranju EHR zapisa obstoječega bolnika,
+   * ko uporabnik izbere vrednost iz padajočega menuja
+   * (npr. Dejan Lavbič, Pujsa Pepa, Ata Smrk)
+   */
+	$('#preberiObstojeciEHR').change(function() {
+		$("#preberiSporocilo").html("");
+		$("#preberiEHRid").val($(this).val());
+	});
+
+  /**
+   * Napolni testne vrednosti (EHR ID, datum in ura, telesna višina,
+   * telesna teža, telesna temperatura, sistolični in diastolični krvni tlak,
+   * nasičenost krvi s kisikom in merilec) pri vnosu meritve vitalnih znakov
+   * bolnika, ko uporabnik izbere vrednosti iz padajočega menuja (npr. Ata Smrk)
+   */
+	$('#preberiObstojeciVitalniZnak').change(function() {
+		$("#dodajMeritveVitalnihZnakovSporocilo").html("");
+		var podatki = $(this).val().split("|");
+		$("#dodajVitalnoEHR").val(podatki[0]);
+		$("#dodajVitalnoDatumInUra").val(podatki[1]);
+		$("#dodajVitalnoTelesnaVisina").val(podatki[2]);
+		$("#dodajVitalnoTelesnaTeza").val(podatki[3]);
+		$("#dodajVitalnoTelesnaTemperatura").val(podatki[4]);
+		$("#dodajVitalnoKrvniTlakSistolicni").val(podatki[5]);
+		$("#dodajVitalnoKrvniTlakDiastolicni").val(podatki[6]);
+		$("#dodajVitalnoNasicenostKrviSKisikom").val(podatki[7]);
+		$("#dodajVitalnoMerilec").val(podatki[8]);
+	});
+
+  /**
+   * Napolni testni EHR ID pri pregledu meritev vitalnih znakov obstoječega
+   * bolnika, ko uporabnik izbere vrednost iz padajočega menuja
+   * (npr. Ata Smrk, Pujsa Pepa)
+   */
+	$('#preberiEhrIdZaVitalneZnake').change(function() {
+		$("#preberiMeritveVitalnihZnakovSporocilo").html("");
+		$("#rezultatMeritveVitalnihZnakov").html("");
+		$("#meritveVitalnihZnakovEHRid").val($(this).val());
+	});
+
+});
 
 // TODO: Tukaj implementirate funkcionalnost, ki jo podpira vaša aplikacija
+//FUNKCIJE
 
-function kreirajEHRzaBolnika() {
-	sessionId = getSessionId();
-	
-	$.ajaxSetup({
-	    headers: {"Ehr-Session": sessionId}
-	});
-	
-	
-	
-	for(var i=0; i<3; i++) {
-	    generirajPodatke(i);
-	    
-    
-}
-}
+
+
