@@ -306,8 +306,24 @@ function graf(prijavljen) {
     			date[i] = res[i].time.substring(0,10); 
     			//console.log(vroc[i] + "   " +date[i]);
     		}
-    		for(var i=0; i<6; i++) {
-                if (vroc[i] > 37.0 || vroc[i] < 34.0) {
+    		
+            setTimeout(izrisiGraf(vroc,date), 400);
+    	}), 300);
+        
+    } else {
+        izrisiGraf(vroc,date);
+    }
+}
+
+function izrisiGraf(vroc,date){
+    var ctx = document.getElementById("myChart");
+    for(var i = 0; i < 6; i++) {
+        console.log(vroc[i] + "   " +date[i]);
+    }
+    var bg = [];
+    var bgB = [];
+    for(var i=0; i<6; i++) {
+                if (vroc[i] > 37.2 || vroc[i] < 35.7) {
                     bg[i] = 'rgba(255, 99, 132, 0.2)';
                     bgB[i] = 'rgba(255,99,132,1)';
                 } else {
@@ -315,19 +331,6 @@ function graf(prijavljen) {
                     bgB[i] = 'rgba(54, 162, 235, 1)';
                 }
             }
-            izrisiGraf(vroc,date,bg,bgB);
-    	}), 100);
-        
-    } else {
-        izrisiGraf(vroc,date,bg,bgB);
-    }
-}
-
-function izrisiGraf(vroc,date,bg,bgB){
-    var ctx = document.getElementById("myChart");
-    for(var i = 0; i < 6; i++) {
-        console.log(vroc[i] + "   " +date[i]);
-    }
     var myChart = new Chart(ctx, {
         type: 'bar', 
         data: {
@@ -338,21 +341,21 @@ function izrisiGraf(vroc,date,bg,bgB){
                 data: [vroc[5], vroc[4], vroc[3],vroc[2],vroc[1], vroc[0]],
                 
                 backgroundColor: [
-                    bg[0],
-                    bg[1],
-                    bg[2],
-                    bg[3],
-                    bg[4],
                     bg[5],
+                    bg[4],
+                    bg[3],
+                    bg[2],
+                    bg[1],
+                    bg[0],
     
                 ],
                 borderColor: [
-                    bgB[0],
-                    bgB[1],
-                    bgB[2],
-                    bgB[3],
-                    bgB[4],
                     bgB[5],
+                    bgB[4],
+                    bgB[3],
+                    bgB[2],
+                    bgB[1],
+                    bgB[0],
     
                 ],
                 borderWidth: 0.7

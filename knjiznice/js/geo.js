@@ -8,7 +8,7 @@ window.initMap = function() {
     var infowindow = new google.maps.InfoWindow();
     map = new google.maps.Map(document.getElementById('map'), {
       center: point,
-      zoom: 8
+      zoom: 9
     });
     
     // INPUT
