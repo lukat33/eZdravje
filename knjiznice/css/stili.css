@@ -3,7 +3,11 @@
 }
 
 #testis {
-    height: 300px;
+    height: 500px;
+}
+
+#besedilo {
+    height: 340px;
 }
 
 .controls {
@@ -48,4 +52,20 @@ body {
 .majhna-ikona {
     font-size:60%; 
     margin-left:10px
+}
+
+#kvadratOk {
+    width: 60px;
+    height: 20px;
+    border:1px solid #36A2EB;
+    background-color: rgba(54, 162, 235, 0.2);
+    margin-bottom: 5px;
+}
+
+#kvadratBad {
+    width: 60px;
+    height: 20px;
+    border:1px solid #FF6384;
+    background-color: rgba(255, 99, 132, 0.2);
+    margin-bottom: 5px;
 }

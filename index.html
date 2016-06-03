@@ -6,6 +6,7 @@
   <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
   <link href="knjiznice/css/stili.css" rel="stylesheet">
   <link href="knjiznice/css/angular-chart.css" rel="stylesheet">
+  
   <style>
     body {padding-top: 70px;}
   </style>
@@ -28,7 +29,7 @@
           <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
         </button>
         <!-- ZAČETEK: Ime vaše aplikacije -->
-        <a class="navbar-brand" href="index.html">LUKAAAAAAAA</a>
+        <a class="navbar-brand" href="index.html">VROČINA HUDA</a>
         <!-- KONEC: Ime vaše aplikacije -->
       </div>
       <div class="collapse navbar-collapse" id="menujska-vrstica">
@@ -47,7 +48,7 @@
   		<div class="panel panel-primary">
 				<div class="panel-heading text-center" >
 					<div class="row">	
-						<h3><b>EHR aplikacija</b></h3>
+						<h3><b>VROČINA HUDA</b></h3>
 					</div>
 				</div>
 			</div>
@@ -88,21 +89,76 @@
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-lg-8 col-md-8 col-sm-8">
-								<p><b>Vnos</b> meritve vitalnih znakov</p>
+								<p><b>Vnos</b> meritve telesne temperature</p>
 							</div>
 						</div>
 					</div>
 					<div class="panel-body">
 						<span class="label label-default">Datum in ura</span><input id="dodajVitalnoDatumInUra" type="text" class="form-control input-mini" placeholder="2014-11-21T11:40Z" disabled>
 						<span class="label label-default">Telesna temperatura</span><div class="input-group" ><input id="dodajVitalnoTelesnaTemperatura" type="text" class="form-control input-mini" placeholder="36.50" disabled><span class="input-group-addon">°C</span></div>
-						<button type="button" id="gumbMeritve" class="btn btn-primary btn-xs" onclick="dodajMeritveVitalnihZnakov()" disabled>Dodaj meritve</button><span id="dodajMeritveVitalnihZnakovSporocilo"></span>
+						<button type="button" id="gumbMeritve" class="btn btn-primary btn-xs" onclick="dodajMeritveVitalnihZnakov()" disabled>Dodaj merite</button><span id="dodajMeritveVitalnihZnakovSporocilo"></span>
 				  </div>
 				</div>  
 							
 
 
 			</div>
-			<!-- ZACETEK: google -->
+			<!-- ZACETEK: besedilo -->
+			<div class="col-lg-6 col-md-6 col-sm-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-lg-8 col-md-8 col-sm-8"><b>O aplikaciji</b></div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div id="besedilo">
+							<p>Pozdravljen!</p>
+							<p>Najprej se prijavi s svojim EHR id-jem. V primeru, da ga nimaš, klikni gumb <b>Generiranje podatkov</b> zgoraj v meniju. Na izbiro boš dobil 3 testne uporabnike: </p>
+							<ul>
+						  	<li>Zdravko Dren (zdrav, normalna telesna temepratura)</li>
+						  	<li>Peter Peterko (srednje zdrav, malce povišana telesna temperatura)</li>
+						  	<li>Boljan Vročinek (bolan, povišana telesna temeperatura)</li>
+							</ul>
+							<p>Po uspešni prijavi lahko začneš uporabljati aplikacijo. </br> V polje <b>Vnos meritve telesne temperature</b>
+							vnesi datum, uro in izmerjeno telesno temperaturo, ter klikni gumb <b>Dodaj meritev</b>.</p>
+							<p>Iz grafa lahko odčitaš zadnjih 6 meritev, na voljo pa imaš tudi <b>Google maps</b> pripomoček, ki ti olajša iskanje zdravstvenih ustanov in lekarn v bližini iskane lokacije.</p>
+							<p>V primeru težav z uporabo aplikacije nam piši na <b>e-mail</b>: <i>vrocina@huda.si</i> ,</p>
+							<p align="right">
+							ekipa Vrocina Huda.</p>
+						</div>
+			  	</div>
+				</div>	
+			</div>
+			<!-- KONEC: besedilo -->
+		</div>
+		<!-- KONEC: prva vrsta -->
+		<div class="row">
+			
+			 <div class="col-lg-6 col-md-6 col-sm-6">
+				<div class="panel panel-default" id="prijavaOff">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-lg-8 col-md-8 col-sm-8"><p><b>Graf</b> izmerjenih telesnih temperatur</p></div>
+						</div>
+					</div>
+					<div class="panel-body text-center" id="canvasContainer">
+						<div class="row">
+							<canvas id="myChart" width="300" height="300"></canvas>
+						</div>
+						<div class="row">
+							<div class="col-lg-2 col-md-2 col-sm-2">
+								<div id="kvadratOk"><font color="#36A2EB">OK</font></div>
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2">
+								<div id="kvadratBad"><font color="#FF6384">SLABO</font></div>
+							</div>
+						</div>
+							</div>
+				  </div>
+			  </div>
+			  
+			  <!-- ZACETEK: google -->
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -130,26 +186,15 @@
 				</div>	
 			</div>
 			<!-- KONEC: google -->
-		</div>
-		<!-- KONEC: prva vrsta -->
-		<div class="row">
 			
-			 <div class="col-lg-6 col-md-6 col-sm-6">
-				<div class="panel panel-default" id="prijavaOff">
-					<div class="panel-heading">
-						<div class="row">
-							<div class="col-lg-8 col-md-8 col-sm-8"><p><b>Prijava</b> uporabnika</p></div>
-						</div>
-					</div>
-					<div class="panel-body text-center">
-						<canvas id="myChart" width="300" height="300"></canvas>
-				  </div>
-			  </div>
-			  
-			  <button type="button" id="asd" class="btn btn-primary btn-xs" onclick="graf()">asd</button>
-			
-		
 	</div>
+	<div class="row">
+  		<div class="panel panel-primary">
+				<div class="panel-heading text-center" >
+					<font color="#FFF" size="1px"><i>Vročina huda 2016</i></font>
+				</div>
+			</div>
+    </div>
   <!-- KONEC: Vsebina aplikacije -->
 
 </body>
