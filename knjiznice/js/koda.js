@@ -275,12 +275,16 @@ function prijava() {
                 $( "#user" ).html("<b>Pozdravljen </b>" +ime + " " + priimek+ "!");
                 $('#prijavljen2').attr('placeholder',ehrId);
                 $("#dodajVitalnoDatumInUra").attr('disabled', false);
+                $("#dodajVitalnoTelesnaTemperatura").attr('disabled', false);
                 $("#gumbMeritve").attr('disabled', false);
             } 
                 else if($('#prijavaOn').css('display')!='none'){
                 $('#prijavaOff').show().siblings('#prijavaOn').hide();
                 prijavljen = "nihce";
                 $("#prijavljen").val("");
+                $("#dodajVitalnoDatumInUra").attr('disabled', true);
+                $("#dodajVitalnoTelesnaTemperatura").attr('disabled', true);
+                $("#gumbMeritve").attr('disabled', true);
                 }
 			},
 			error: function(err) {
@@ -351,5 +355,70 @@ function dodajMeritveVitalnihZnakov() {
 	}
 }
 
-
-
+function graf() {
+    var ctx = document.getElementById("myChart");
+    
+    var vroc = [];
+    var bg = [];
+    var bgB = [];
+    var date = [];
+    
+    var red = 'rgba(255, 99, 132, 0.2)';
+    var redB = 'rgba(255,99,132,1)';
+    var blue = 'rgba(54, 162, 235, 0.2)';
+    var blueB = 'rgba(54, 162, 235, 1)';
+    
+    for(var i=0; i<6; i++) {
+        if (vroc[i] > 37.0) {
+            bg[i] = red;
+            bgB[i] = redB;
+        } else {
+            bg[i] = blue;
+            bgB[i] = blueB;
+        }
+    }
+    
+    var myChart = new Chart(ctx, {
+        type: 'bar', 
+        data: {
+            labels: [date[0], date[0], date[0],date[0], date[0], date[0]],
+            datasets: [{
+                label: '°C',
+                
+                data: [vroc[0], vroc[1], vroc[2],vroc[3],vroc[4], vroc[5]],
+                
+                backgroundColor: [
+                    bg[0],
+                    bg[1],
+                    bg[2],
+                    bg[3],
+                    bg[4],
+                    bg[5],
+    
+                ],
+                borderColor: [
+                    bgB[0],
+                    bgB[1],
+                    bgB[2],
+                    bgB[3],
+                    bgB[4],
+                    bgB[5],
+    
+                ],
+                borderWidth: 0.7
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true,
+                        max: 43,
+                        min: 30,
+                        stepSize: 1,
+                    }
+                }]
+            }
+        }
+});
+}

@@ -5,6 +5,7 @@
   <title>eZdravje :: 4. DN :: OIS 2015/2016</title>
   <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
   <link href="knjiznice/css/stili.css" rel="stylesheet">
+  <link href="knjiznice/css/angular-chart.css" rel="stylesheet">
   <style>
     body {padding-top: 70px;}
   </style>
@@ -12,6 +13,7 @@
   <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
   <script src="knjiznice/js/bootstrap.min.js"></script>
   <script src="knjiznice/js/koda.js"></script>
+  <script src="knjiznice/js/Chart.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnYWqnWw2rSK-uqJdTybBhTAVxtMPVlPE&libraries=places&callback=initMap"></script>
 	<script src="knjiznice/js/geo.js"></script>
 </head>
@@ -92,12 +94,12 @@
 					</div>
 					<div class="panel-body">
 						<span class="label label-default">Datum in ura</span><input id="dodajVitalnoDatumInUra" type="text" class="form-control input-mini" placeholder="2014-11-21T11:40Z" disabled>
-						<span class="label label-default">Telesna temperatura</span><div class="input-group"><input id="dodajVitalnoTelesnaTemperatura" type="text" class="form-control input-mini" placeholder="36.50"><span class="input-group-addon">°C</span></div>
-						<span class="label label-default">Sistolični krvni tlak</span><div class="input-group"><input id="dodajVitalnoKrvniTlakSistolicni" type="text" class="form-control input-mini" placeholder="118"><span class="input-group-addon">mm Hg</span></div>
-						<span class="label label-default">Diastolični krvni tlak</span><div class="input-group"><input id="dodajVitalnoKrvniTlakDiastolicni" type="text" class="form-control input-mini" placeholder="92"><span class="input-group-addon">mm Hg</span></div>
+						<span class="label label-default">Telesna temperatura</span><div class="input-group" ><input id="dodajVitalnoTelesnaTemperatura" type="text" class="form-control input-mini" placeholder="36.50" disabled><span class="input-group-addon">°C</span></div>
 						<button type="button" id="gumbMeritve" class="btn btn-primary btn-xs" onclick="dodajMeritveVitalnihZnakov()" disabled>Dodaj meritve</button><span id="dodajMeritveVitalnihZnakovSporocilo"></span>
 				  </div>
-				</div>
+				</div>  
+							
+
 
 			</div>
 			<!-- ZACETEK: google -->
@@ -130,6 +132,23 @@
 			<!-- KONEC: google -->
 		</div>
 		<!-- KONEC: prva vrsta -->
+		<div class="row">
+			
+			 <div class="col-lg-6 col-md-6 col-sm-6">
+				<div class="panel panel-default" id="prijavaOff">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-lg-8 col-md-8 col-sm-8"><p><b>Prijava</b> uporabnika</p></div>
+						</div>
+					</div>
+					<div class="panel-body text-center">
+						<canvas id="myChart" width="300" height="300"></canvas>
+				  </div>
+			  </div>
+			  
+			  <button type="button" id="asd" class="btn btn-primary btn-xs" onclick="graf()">asd</button>
+			
+		
 	</div>
   <!-- KONEC: Vsebina aplikacije -->
 
