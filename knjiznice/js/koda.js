@@ -307,7 +307,7 @@ function graf(prijavljen) {
     			//console.log(vroc[i] + "   " +date[i]);
     		}
     		
-            setTimeout(izrisiGraf(vroc,date), 400);
+            setTimeout(izrisiGraf(vroc,date), 450);
     	}), 300);
         
     } else {

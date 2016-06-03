@@ -62,7 +62,8 @@ function geoHosp(place) {
         location: place.geometry.location,
         radius: 1000,
         type: ['doctor', 'dentist']
-    }, callbackHosp); }
+        }, callbackHosp);
+        }
     clearMarkersHealth();
 }
 
