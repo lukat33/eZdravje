@@ -211,7 +211,7 @@ function prijava() {
             $("#dodajVitalnoTelesnaTemperatura").attr('disabled', true);
             $("#gumbMeritve").attr('disabled', true);
             $("#izrisiGraf").attr('disabled', true);
-            graf(undefined);
+            setTimeout(graf(undefined), 500);
             }
                 
 			},
@@ -263,7 +263,7 @@ function dodajMeritveVitalnihZnakov() {
         "<span class='obvestilo label label-danger fade-in'>Prišlo je do napake");
 	    }
 	});
-	graf(prijavljen);
+	setTimeout(graf(prijavljen), 500);
 }
 
 function vrniVrocino(ehrId, callback) {
