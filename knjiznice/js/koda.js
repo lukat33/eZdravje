@@ -4,7 +4,7 @@ var queryUrl = baseUrl + '/query';
 
 var username = "ois.seminar";
 var password = "ois4fri";
-var prijavljen = "nihce";
+var prijavljen = "";
 var ustaviGeneriranje = 0;
 
 
@@ -200,7 +200,7 @@ function prijava() {
                 $("#dodajVitalnoTelesnaTemperatura").attr('disabled', false);
                 $("#gumbMeritve").attr('disabled', false);
                 $("#izrisiGraf").attr('disabled', false);
-                setTimeout(graf(prijavljen), 500);
+                setTimeout(graf(prijavljen), 1000);
                 
             } 
             else if($('#prijavaOn').css('display')!='none'){
@@ -211,7 +211,7 @@ function prijava() {
             $("#dodajVitalnoTelesnaTemperatura").attr('disabled', true);
             $("#gumbMeritve").attr('disabled', true);
             $("#izrisiGraf").attr('disabled', true);
-            setTimeout(graf(undefined), 500);
+            setTimeout(graf(undefined), 1000);
             }
                 
 			},
@@ -263,7 +263,7 @@ function dodajMeritveVitalnihZnakov() {
         "<span class='obvestilo label label-danger fade-in'>Prišlo je do napake");
 	    }
 	});
-	setTimeout(graf(prijavljen), 500);
+	setTimeout(graf(prijavljen), 1000);
 }
 
 function vrniVrocino(ehrId, callback) {
@@ -292,8 +292,8 @@ function graf(prijavljen) {
     sessionId = getSessionId();
 	var ehrId = prijavljen; console.log(prijavljen);
     var vroc = ['0','0','0','0','0','0'];
-    var bg = [];
-    var bgB = [];
+    var bgB = ['#36A2EB','#36A2EB','#36A2EB','#36A2EB','#36A2EB','#36A2EB'];
+    var bg = ['rgba(54, 162, 235, 0.2)','rgba(54, 162, 235, 0.2)','rgba(54, 162, 235, 0.2)','rgba(54, 162, 235, 0.2)','rgba(54, 162, 235, 0.2)','rgba(54, 162, 235, 0.2)'];
     var date = ['/','/','/','/','/','/'];
     
     $('#myChart').remove(); // this is my <canvas> element
@@ -378,5 +378,5 @@ function izrisiGraf(vroc,date){
 }
 
 window.onload = function() {
-  graf();
+  graf(undefined);
 };
