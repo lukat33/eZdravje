@@ -200,7 +200,8 @@ function prijava() {
                 $("#dodajVitalnoTelesnaTemperatura").attr('disabled', false);
                 $("#gumbMeritve").attr('disabled', false);
                 $("#izrisiGraf").attr('disabled', false);
-                graf(prijavljen);
+                setTimeout(graf(prijavljen), 500);
+                
             } 
             else if($('#prijavaOn').css('display')!='none'){
             $('#prijavaOff').show().siblings('#prijavaOn').hide();
@@ -299,7 +300,7 @@ function graf(prijavljen) {
     $('#canvasContainer').append('<canvas id="myChart" width="300" height="300"></canvas>');
     // pridobi podatke
     
-    if (ehrId != undefined || ehrId == 'nihce') {
+    if (ehrId != undefined || ehrId == 'nihce' || ehrId == '') {
         setTimeout(vrniVrocino(ehrId,function(res){
     		for(var i = res.length-1; i>=0; i--){
     			vroc[i] = res[i].temperature;
