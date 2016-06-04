@@ -96,7 +96,7 @@
 					<div class="panel-body">
 						<span class="label label-default">Datum in ura</span><input id="dodajVitalnoDatumInUra" type="text" class="form-control input-mini" placeholder="2014-11-21T11:40Z" disabled>
 						<span class="label label-default">Telesna temperatura</span><div class="input-group" ><input id="dodajVitalnoTelesnaTemperatura" type="text" class="form-control input-mini" placeholder="36.50" disabled><span class="input-group-addon">°C</span></div>
-						<button type="button" id="gumbMeritve" class="btn btn-primary btn-xs" onclick="dodajMeritveVitalnihZnakov()" disabled>Dodaj meritev</button><span id="dodajMeritveVitalnihZnakovSporocilo"></span>
+						<button type="button" id="gumbMeritve" class="btn btn-primary btn-xs" onclick="dodajMeritveVitalnihZnakov()" disabled>Dodaj meritev</button><span id="dodajMeritveVitalnihZnakovSporocilo"></span><span id="opozorilo"></span>
 				  </div>
 				</div>  
 							
@@ -160,7 +160,7 @@
 			  
 			  <!-- ZACETEK: google -->
 			<div class="col-lg-6 col-md-6 col-sm-6">
-				<div class="panel panel-default">
+				<div class="panel panel-default" id="googlePanel">
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-lg-8 col-md-8 col-sm-8"><b>Google maps</b> pripomoček</div>

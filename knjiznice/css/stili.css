@@ -69,3 +69,7 @@ body {
     background-color: rgba(255, 99, 132, 0.2);
     margin-bottom: 5px;
 }
+
+.bolan {
+    panel: panel-default;
+}

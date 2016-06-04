@@ -111,7 +111,7 @@ function generirajPodatke(stPacienta) {
                 dateOfBirth: rojstvo,
                 partyAdditionalInfo: [{key: "ehrId", value: ehrId}]
             };
-
+            
             $.ajax({
                 url: baseUrl + "/demographics/party",
                 type: 'POST',
@@ -257,6 +257,13 @@ function dodajMeritveVitalnihZnakov() {
 	    success: function (res) {
 	        $("#dodajMeritveVitalnihZnakovSporocilo").html(
           "<span class='obvestilo label label-success fade-in'>Meritev uspešno dodana</span>");
+          if($("#dodajVitalnoTelesnaTemperatura").val() > 37.3) {
+              $("#opozorilo").html(
+          "<span class='obvestilo label label-danger fade-in'>Imaš povišano telesno temperaturo, obišči zdravnika!</span>");
+          } else if ($("#dodajVitalnoTelesnaTemperatura").val() < 35.7) {
+               $("#opozorilo").html(
+          "<span class='obvestilo label label-danger fade-in'>Imaš prenizko telesno temperaturo, obišči zdravnika!</span>");
+          }
 	    },
 	    error: function(err) {
 	    	$("#dodajMeritveVitalnihZnakovSporocilo").html(
