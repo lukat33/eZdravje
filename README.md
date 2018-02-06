@@ -18,7 +18,7 @@ Za vizualizacijo podatkov se uporablja knjiznica Chart.js. Uporabljena je, ker z
 ## Načtrt informacijske rešitve
 
 ### Diagram primerov uporabe
-![use_case](knjiznice/slike/Basic Use Case Diagram OIS - Standard.jpeg)
+![use_case](knjiznice/slike/use_case.jpeg)
 
 ### VOPC diagram
 ![vopc](knjiznice/slike/vopc.jpg)
